@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar [color]="ffe4c4">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Account Top Achievers
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item *ngFor="let a of items">
+    <ion-label text-wrap>
+      <ion-text>
+        <p [innerHTML]="a.name"></p>
+      </ion-text>
+    </ion-label>
+    <ion-avatar slot="end">
+      <ion-badge style="position: absolute;background: transparent;
+        color: black;">5</ion-badge>
+      <ion-icon name="thumbs-up-outline" style="color: greenyellow;zoom:2.0;"> </ion-icon>
+    </ion-avatar>
+    <ion-avatar slot="end">
+      <ion-badge style="position: absolute;background: transparent;
+        color: black;">5</ion-badge>
+      <ion-icon name="gift-outline" style="color: orange;zoom:2.0;"> </ion-icon>
+    </ion-avatar>
+    <ion-avatar slot="end">
+      <ion-badge style="position: absolute;background: transparent;
+        color: black;">5</ion-badge>
+      <ion-img src="./../assets/applause.jpg" style="color: #d64161; "></ion-img>
+    </ion-avatar>
+
+  </ion-item>
+  <ion-chip>
+    <ion-icon name="thumbs-up-outline" style="color: greenyellow;"></ion-icon>
+    <ion-label>Good Job</ion-label>
+  </ion-chip>
+  <br />
+  <ion-chip>
+    <ion-icon name="gift-outline" style="color: orange;"></ion-icon>
+    <ion-label>A secret gift for you</ion-label>
+  </ion-chip>
+  <br />
+  <ion-chip>
+    <ion-img src="./../assets/applause.jpg" style="color: #d64161;width: 25px;height: 25px;"></ion-img>
+    <ion-label>Great effort- much appreciated </ion-label>
+  </ion-chip>
+</ion-content>

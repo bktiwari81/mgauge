@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Account Dashboard
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h2>Eagle Account- Employee engagement LOB wise
+  </h2>
+  <ion-item *ngFor="let a of items">
+    <ion-label text-wrap>
+      <ion-text>
+        <p [innerHTML]="a.text"></p>
+      </ion-text>
+    </ion-label>
+    <ion-icon [style.color]="a.color" name="ellipse"></ion-icon>
+  </ion-item>
+
+  <ion-chip>
+    <ion-icon name="ellipse" style="color: green;"></ion-icon>
+    <ion-label>More than 50% employees appreciated in 3 months</ion-label>
+  </ion-chip>
+  <ion-chip>
+    <ion-icon name="ellipse" style="color: yellow;"></ion-icon>
+    <ion-label>30% -50% employees appreciated in 3 months</ion-label>
+  </ion-chip>
+  <ion-chip>
+    <ion-icon name="ellipse" style="color: red;"></ion-icon>
+    <ion-label>Less than 30% employees appreciated in 3 months </ion-label>
+  </ion-chip>
+</ion-content>
