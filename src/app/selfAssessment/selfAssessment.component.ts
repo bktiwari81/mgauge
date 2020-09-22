@@ -10,56 +10,68 @@ import { SelfAssessmentService } from '../service/self-assessment.service';
 })
 export class SelfAssessmentComponent {
 
-    showAppreciationPopup = false;
-    appreciationForm: FormGroup;
-    constructor(public alertController: AlertController,private formBuilder: FormBuilder, public selfAssessmentService: SelfAssessmentService
+    showPopup = false;
+    form: FormGroup;
+    constructor(public alertController: AlertController, public formBuilder: FormBuilder,
+         public selfAssessmentService: SelfAssessmentService
     ) { }
 
     ngOnInit() {
-        this.appreciationForm = this.formBuilder.group({
-            empId: ['', Validators.required],
-            action: [''],
-            comment: ['']
-        });
     }
 
-    appreciateEmp(): void {
-        this.showAppreciationPopup = true;
-        // this.alertController.create({
-        //     header: 'Appreciate Someone',
-        //     cssClass: 'alertClass',
-        //     inputs: [
-        //         {
-        //             type: 'text',
-        //             label: 'Enter Employee ID',
-        //             value: 'xs'
-        //         },
 
-        //         {
-        //             type: 'text',
-        //             label: 'Enter Employee ID',
-        //             value: 'xs'
-        //         }
-               
-        //     ],
-        //     buttons: [
-        //         {
-        //             text: 'Submit!',
-        //             handler: (data: any) => {
-        //             }
-        //         }
-        //     ]
-        // }).then(res => {
-        //     res.present();
-        // })
-
-    }
-
-    submitAppreciation(): void {
-        console.log('form submitted');
-        this.selfAssessmentService.notifyEmployee(this.appreciationForm.value).subscribe(data => {
+    submitAppreciation(reqObj): void {
+        let req = {
+            'EmpId' : reqObj[0],
+            'AppreciationDescription': reqObj[3]
+        };
+        console.log('form submitted', req);
+        this.selfAssessmentService.notifyEmployee(req).subscribe(data => {
             console.log(data);
         });
 
     }
+    appreciateEmp(): void {
+        this.showPopup = true;
+        this.alertController.create({
+            header: 'Appreciate Someone',
+            cssClass: 'alertClass',
+            inputs: [
+                {
+                    type: 'text',
+                    label: 'Enter Employee ID',
+                    value: ''
+                },
+                {
+                    type: 'radio',
+                    label: 'Appreciation',
+                    value: 'appreciation'
+                },
+                {
+                    type: 'radio',
+                    label: 'Applause',
+                    value: 'applause'
+                },
+                {
+                    type: 'textarea',
+                    label: 'Comments',
+                    value: 'comments'
+                }
+            ],
+            buttons: [
+                {
+                    text: 'Submit',
+                    handler: (data: any) => {
+                        console.log('Submit form', data);
+                        this.submitAppreciation(data)
+
+                    }
+                }
+            ]
+        }).then(res => {
+            console.log(res)
+            res.present();
+        });
+    }
+
 }
