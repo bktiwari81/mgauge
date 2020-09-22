@@ -11,7 +11,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header style="text-align:center;">
-      Appreciate Someone ?
+      <div (click)="appreciateEmp()">Appreciate Someone ?</div>
     </ion-card-header>
   </ion-card>
   <ion-card>
@@ -49,4 +49,26 @@
       </ion-item>
     </ion-list>
   </ion-card>
+
+  <ng-template *ngIf="showAppreciationPopup">
+    <form [formGroup]="appreciationForm">
+      <div>
+        <input type="text" formControlName="empId">Enter Employee ID
+      </div>
+      <div >
+        <select formControlName="action">
+          <option>Appreciate</option>
+          <option>Appluase</option>
+        </select>
+      </div>
+      <div>
+        <input type="textarea" formControlName="comments" rows="4">Enter Comments:
+      </div>
+    
+      <div >
+        <button type="submit" value="Submit" (click)="submitAppreciation()">Submit</button>
+        </div>
+    </form>
+    
+  </ng-template>
 </ion-content>

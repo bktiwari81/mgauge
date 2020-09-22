@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { HomeService } from '../service/home.service';
 
 @Component({
     selector: 'home',
@@ -7,13 +8,14 @@ import { AlertController } from '@ionic/angular';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    items = [{ text: 'Digital', color: 'red' },
-    { text: 'Data', color: 'red' },
-    { text: 'Lending', color: 'green' },
-    { text: 'Deposits', color: 'yellow' },
-    { text: 'Digital PWM', color: 'green' },
-    { text: 'RCT', color: 'yellow' }];
-    constructor(public alertController: AlertController) { }
+    items=[];
+    // items = [{ text: 'Digital', color: 'red' },
+    // { text: 'Data', color: 'red' },
+    // { text: 'Lending', color: 'green' },
+    // { text: 'Deposits', color: 'yellow' },
+    // { text: 'Digital PWM', color: 'green' },
+    // { text: 'RCT', color: 'yellow' }];
+    constructor(public alertController: AlertController, public homeService: HomeService) { }
 
     ngOnInit() {
         this.alertController.create({
@@ -56,6 +58,11 @@ export class HomeComponent implements OnInit {
             ]
         }).then(res => {
             res.present();
+        });
+
+        this.homeService.getTeamFlaggingData().subscribe(data => {
+           console.log('Team Flagging data: ', data);
+           this.items = data;
         });
     }
 

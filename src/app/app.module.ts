@@ -15,6 +15,8 @@ import { AboutUsComponent } from './aboutUs/aboutUs.component';
 import { ContactUsComponent } from './contactUs/contactUs.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HomeService } from './service/home.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     IonicModule.forRoot(),
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, StatusBar,
+    HomeService,
     SplashScreen,],
   bootstrap: [AppComponent]
 })
