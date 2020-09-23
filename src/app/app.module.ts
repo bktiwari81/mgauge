@@ -18,10 +18,11 @@ import { environment } from '../environments/environment';
 import { HomeService } from './service/home.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { SelfAssessmentComponent } from './selfAssessment/selfAssessment.component';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, LoginComponent, AccountViewComponent, AboutUsComponent, ContactUsComponent
+    AppComponent, HomeComponent, LoginComponent, SelfAssessmentComponent, AccountViewComponent, AboutUsComponent, ContactUsComponent
   ],
   imports: [
     BrowserModule,
